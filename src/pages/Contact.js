@@ -1,12 +1,12 @@
 import React from "react";
 import { Box, Heading, Text, Link } from "@chakra-ui/react";
-import { HiOutlineMail, HiOutlinePhone, HiOutlineExternalLink } from "react-icons/hi";
+import { HiOutlineMail, HiOutlinePhone} from "react-icons/hi";
 import { FaGithub, FaWhatsappSquare } from "react-icons/fa";
 
 const Contact = () => {
 return (
 <Box p={4} bg="gray.900" color="white" textAlign="center">
-<Heading mb={4}>Contact</Heading>
+<Heading fontFamily="Righteous " mb={4}>Contact</Heading>
 <Box>
     <Text fontWeight="bold" fontSize="xl" mb={4}>
       Let's Connect!

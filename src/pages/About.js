@@ -5,7 +5,7 @@ const About = () => {
   return (
     <Center>
       <Box p={4} maxWidth="800px" bg="gray.900" color="white">
-        <Heading mb={4}>About</Heading>
+        <Heading fontFamily="Righteous " mb={4}>About</Heading>
 
         <Box mb={8}>
           <Text fontWeight="bold">Background:</Text>

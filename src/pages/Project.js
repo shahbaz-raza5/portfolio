@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Box, Flex, Heading, Text, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Image } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Image, useMediaQuery } from '@chakra-ui/react';
 import Typewriter from "typewriter-effect";
 import { FaChevronRight } from "react-icons/fa";
 const Project = () => {
+  const [isMobile] = useMediaQuery("(max-width: 480px)");
   const projects = [
     {
       title: 'Gist App',
@@ -86,14 +87,12 @@ const Project = () => {
   return (
     <Box bg="gray.900" color="white" minHeight="100vh" px={4}>
       <Box maxW="960px" mx="auto" py={8}>
-        
-         
-       
-        <Heading as="h1" mb={4}>
-          <Typewriter
+
+        <Heading fontFamily="Righteous" fontSize='22px' mb={4} textAlign="center">
+          <Typewriter 
             options={{
               strings: [
-                " Welcome to My Portfolio",
+                "Welcome to My Portfolio",
                 "I am Syed Shahbaz Raza",
                 "Here is Some of my Work",
               ],
@@ -103,23 +102,24 @@ const Project = () => {
               deleteSpeed: 50,
             }}
           />
-         </Heading>
-        <Text fontSize="xl" mb={8}>
-        Demonstrating my expertise in developing intuitive interfaces, seamless user experiences, and impactful solutions tailored to client needs.
+        </Heading>
+        <Text fontSize={isMobile ? "ml" : "xl"} mb={8} textAlign="center">
+          Demonstrating my expertise in developing intuitive interfaces, seamless user experiences, and impactful solutions tailored to client needs.
         </Text>
-        <Flex flexWrap="wrap">
+        <Flex flexWrap="wrap" justifyContent={isMobile ? "center" : "flex-start"}>
           {projects.map((project, index) => (
             <Box
               key={index}
-              flex="0 0 calc(33.33% - 16px)"
+              flex={isMobile ? "0 0 calc(100% - 16px)" : "0 0 calc(33.33% - 16px)"}
               borderRadius="md"
               overflow="hidden"
               bg="gray.700"
               boxShadow="md"
               m={2}
+              width={isMobile ? "100%" : ""}
             >
               <Box
-                h="200px"
+                h={isMobile ? "300px" : "200px"}
                 bgImage={`url(${project.image})`}
                 bgSize="cover"
                 bgPos="center"
@@ -127,15 +127,14 @@ const Project = () => {
                 cursor="pointer"
               />
               <Box p={4}>
-                <Heading as="h2" fontSize="xl" mb={2}>
+                <Heading as="h2" fontSize={isMobile ? "lg" : "xl"} mb={2}>
                   {project.title}
                 </Heading>
-                <Text>{project.description}</Text>
+                <Text fontSize={isMobile ? "sm" : ""}>{project.description}</Text>
                 <Flex justifyContent="space-between" mt={4}>
                   <Button colorScheme="teal" onClick={() => openGallery(project)}>
                     View Images
                   </Button>
-                  
                 </Flex>
               </Box>
             </Box>
@@ -145,42 +144,41 @@ const Project = () => {
 
       {/* Gallery Modal */}
       <Modal
-      key={selectedProject?.title}
-      isOpen={Boolean(selectedProject)}
-      onClose={closeGallery}
-      size="xl"
-      height="80%"
-    >
-      <ModalOverlay />
-      <ModalContent width="100%">
-        <ModalHeader>{selectedProject?.title} Gallery</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <Flex justifyContent="center">
-            <Image
-              src={selectedProject?.images[currentImageIndex]}
-              alt={`Image ${currentImageIndex}`}
-              objectFit="contain"
-              height="400px" // Increase the image height as desired
-              width="100%" // Set the width to match the browser width
-              mx={2}
-            />
-          </Flex>
-        </ModalBody>
-        {selectedProject?.images.length > 1 && (
-          <ModalFooter>
-            <Button
-              colorScheme="gray"
-              onClick={nextImage}
-              rightIcon={<FaChevronRight />}
-            >
-              Next Image
-            </Button>
-          </ModalFooter>
-        )}
-      </ModalContent>
-    </Modal>
-
+        key={selectedProject?.title}
+        isOpen={Boolean(selectedProject)}
+        onClose={closeGallery}
+        size="xl"
+        height="80%"
+      >
+        <ModalOverlay />
+        <ModalContent width="100%">
+          <ModalHeader>{selectedProject?.title} Gallery</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Flex justifyContent="center">
+              <Image
+                src={selectedProject?.images[currentImageIndex]}
+                alt={`Image ${currentImageIndex}`}
+                objectFit="contain"
+                height={isMobile ? "250px" : "400px"} // Adjust the image height as desired for mobile and desktop
+                width="100%" // Set the width to match the browser width
+                mx={2}
+              />
+            </Flex>
+          </ModalBody>
+          {selectedProject?.images.length > 1 && (
+            <ModalFooter>
+              <Button
+                colorScheme="gray"
+                onClick={nextImage}
+                rightIcon={<FaChevronRight />}
+              >
+                Next Image
+              </Button>
+            </ModalFooter>
+          )}
+        </ModalContent>
+      </Modal>
     </Box>
   );
 };

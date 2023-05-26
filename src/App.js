@@ -3,13 +3,13 @@ import { ChakraProvider, CSSReset, extendTheme } from "@chakra-ui/react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 // import Home from ".pages/Home";
 import Project from "./pages/Project";
 import Resume from "./pages/Resume";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Home from "./pages/Home";
+
 
 const theme = extendTheme({
 styles: {
@@ -27,16 +27,15 @@ return (
 <CSSReset />
 <Router>
 <Header />
-{/* <Hero /> */}
+
 <Routes>
 <Route exact path="/" element={<Hero/>} />
-{/* <Route exact path="/home" element={<Home/>} /> */}
 <Route exact path="/projects" element={<Project/>} />
 <Route exact path="/resume" element={<Resume/>} />
 <Route exact path="/about" element={<About/>} />
 <Route exact path="/contact" element={<Contact/>} />
 </Routes>
-<Footer />
+{/* <Footer /> */}
 </Router>
 </ChakraProvider>
 );

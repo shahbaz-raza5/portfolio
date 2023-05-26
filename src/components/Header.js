@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Flex,
@@ -20,7 +20,12 @@ const Header = () => {
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
-
+  useEffect(() => {
+    // Set the initial color mode to dark
+    if (colorMode !== "dark") {
+      toggleColorMode();
+    }
+  }, []);
   const isActive = (path) => {
     return location.pathname === path;
   };
@@ -45,6 +50,7 @@ const Header = () => {
               onClick={handleToggle}
               variant="ghost"
               color={colorMode === "light" ? "gray.800" : "white"}
+              _hover={{ color: "teal.400" }}
             />
             {isOpen && (
               <Slide direction="top" in={isOpen} style={{ zIndex: 10 }}>
@@ -165,7 +171,8 @@ const Header = () => {
           icon={colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
           onClick={toggleColorMode}
           variant="ghost"
-          color={colorMode === "light" ? "gray.800" : "white"}
+          color={colorMode === "light" ? "teal.200" : "teal.400"}
+          _hover={{ color: "teal.400" }}
         />
       </Flex>
     </Box>

@@ -24,6 +24,7 @@ minHeight: "100vh",
 const App = () => {
 return (
 <ChakraProvider theme={theme}>
+    
 <CSSReset />
 <Router>
 <Header />

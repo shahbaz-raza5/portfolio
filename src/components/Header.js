@@ -1,6 +1,14 @@
 import React from "react";
-import { Box, Flex, Heading, IconButton, Slide, useColorMode, useMediaQuery } from "@chakra-ui/react";
-import { MoonIcon, SunIcon,HamburgerIcon ,CloseIcon  } from "@chakra-ui/icons";
+import {
+  Box,
+  Flex,
+  Heading,
+  IconButton,
+  Slide,
+  useColorMode,
+  useMediaQuery
+} from "@chakra-ui/react";
+import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
@@ -18,9 +26,15 @@ const Header = () => {
   };
 
   return (
-    <Box bgColor={isMobile ? "gray.1200" : "gray.800"} py={isMobile ? "10px" : "50px"} zIndex={10} boxShadow={isMobile ? "0 0 2px 2px rgba(255, 255, 255, 0.2)" : "lg"} px={isMobile ? "10px" : "50px"}>
+    <Box
+      bgColor={isMobile ? "gray.1200" : "gray.800"}
+      py={isMobile ? "10px" : "50px"}
+      zIndex={10}
+      boxShadow={isMobile ? "0 0 2px 2px rgba(255, 255, 255, 0.2)" : "lg"}
+      px={isMobile ? "10px" : "50px"}
+    >
       <Flex justify="space-between" align="center">
-        <Heading size="lg" color="white" fontFamily= 'Foldit'>
+        <Heading size="lg" color="white" fontFamily="Foldit">
           Portfolio
         </Heading>
         {isMobile && (
@@ -30,7 +44,7 @@ const Header = () => {
               icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
               onClick={handleToggle}
               variant="ghost"
-              color="white"
+              color={colorMode === "light" ? "gray.800" : "white"}
             />
             {isOpen && (
               <Slide direction="top" in={isOpen} style={{ zIndex: 10 }}>
@@ -151,7 +165,7 @@ const Header = () => {
           icon={colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
           onClick={toggleColorMode}
           variant="ghost"
-          color="white"
+          color={colorMode === "light" ? "gray.800" : "white"}
         />
       </Flex>
     </Box>
